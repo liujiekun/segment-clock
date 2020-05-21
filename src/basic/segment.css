@@ -1,0 +1,91 @@
+.unit{
+  display: inline-block;
+}
+.segment{
+  border-style: solid;
+}
+.clearfix{
+  clear: both;
+}
+.horizen>.before{
+  float: left;
+  border-color: transparent lightblue transparent transparent ;
+  border-width: 15px 15px 15px 0;
+  /* 左侧箭头 */
+}
+.horizen>.after{
+  float: left;
+  border-color: transparent transparent transparent lightblue;
+  border-width: 15px 0 15px 15px;
+  /* 右侧箭头 */
+}
+.horizen>.body{
+  float:left;
+  width: 60px;
+  height:30px;
+  background-color: lightblue;
+}
+.vertical>.before{
+  width: 0;
+  border-color: transparent transparent lightblue transparent;
+  border-width: 0 15px 15px 15px;
+  /* 上箭头 */
+}
+.vertical>.body{
+  width: 30px;
+  height:60px;
+  background-color: lightblue;
+}
+.vertical>.after{
+  /* 下箭头 */
+  width: 0;
+  border-color: lightblue transparent transparent transparent;
+  border-width: 15px 15px 0 15px;
+}
+.allUnit, .dotUnit{
+  display: inline-block;
+}
+.left,.right{
+  position: relative;
+  top: 20px;
+  float:left;
+  width: 30px;
+}
+.left>.bottom,.right>.bottom{
+  position: relative;
+  top:5px;
+}
+.center{
+  position: relative;
+  left:-15px;
+  float: left;
+  width: 90px;
+}
+.center>.middle{
+  position: relative;
+  top:65px;
+}
+.center>.bottom{
+  position: relative;
+  top:130px;
+}
+.right{
+  left:-30px;
+}
+.dotUnit{
+  margin-right:15px;
+}
+.dotUnit>.dot{
+  position: relative;
+  width:30px;
+  height:30px;
+  background-color: lightblue;
+}
+.dotUnit>.top{
+  position: relative;
+  top:-80px;
+}
+.dotUnit>.bottom{
+  position: relative;
+  bottom:15px;
+}
