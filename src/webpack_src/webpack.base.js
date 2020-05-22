@@ -1,6 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var ExtractTextPlugin = require("extract-text-webpack-plugin");
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+// const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 var path = require("path")
 
@@ -13,13 +13,10 @@ const config = {
   module: {
     rules: [{
       test: /\.css$/,
-      use: [
-        {
-          loader: 'style-loader'
-        },
-        {
-          loader: 'css-loader',
-        }]
+      use: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: "css-loader"
+      })
     }]
   },
   plugins: [
@@ -28,14 +25,13 @@ const config = {
       filename: 'index.html',
       inject: true
     }),
-    // new ExtractTextPlugin({
-    //  filename: 'style.css',
-    //  allChunks: true
-    // }),
-    new ExtractCssChunks({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+    new ExtractTextPlugin({
+      filename: 'style.css',
     }),
+    // new ExtractCssChunks({
+    //   filename: '[name].css',
+    //   chunkFilename: '[id].css',
+    // }),
   ]
 }
 module.exports = config
