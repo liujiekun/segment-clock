@@ -56,11 +56,11 @@ var ClockJS = {
   getFormatedTime: function getFormatedTime () {
     var dateNow = new Date();
     var hour = dateNow.getHours();
-    hour = hour > 10 ? hour : ('0' + hour)
+    hour = String.prototype.padStart.call(hour, 2, '0')
     var minute = dateNow.getMinutes();
-    minute = minute > 10 ? minute : ('0' + minute)
+    minute = String.prototype.padStart.call(minute, 2, '0')
     var second = dateNow.getSeconds();
-    second = second > 10 ? second : ('0' + second)
+    second = String.prototype.padStart.call(second, 2, '0')
     return `${hour}${minute}${second}`
   },
   init: function init () {
