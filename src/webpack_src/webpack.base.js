@@ -1,11 +1,12 @@
+const webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-// const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-var { CleanWebpackPlugin } = require('clean-webpack-plugin');
-var path = require("path")
-
+// var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const path = require('path')
 const config = {
-  entry: path.resolve(__dirname, './main.js'),
+  entry: {
+    main: [path.resolve(__dirname, './main.js')]
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js'
@@ -13,10 +14,13 @@ const config = {
   module: {
     rules: [{
       test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: "style-loader",
-        use: "css-loader"
-      })
+      // 使用extractTextPlugin
+      // use: ExtractTextPlugin.extract({
+      //   fallback: "style-loader",
+      //   use: "css-loader"
+      // })
+      // 使用extractCssChunks()
+      use: [ExtractCssChunks.loader, 'css-loader'],
     }]
   },
   plugins: [
@@ -25,13 +29,14 @@ const config = {
       filename: 'index.html',
       inject: true
     }),
-    new ExtractTextPlugin({
-      filename: 'style.css',
-    }),
-    // new ExtractCssChunks({
-    //   filename: '[name].css',
-    //   chunkFilename: '[id].css',
+    new webpack.HotModuleReplacementPlugin(),
+    // new ExtractTextPlugin({
+    //   filename: 'style.css',
     // }),
+    new ExtractCssChunks({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
   ]
 }
 module.exports = config
